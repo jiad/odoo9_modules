@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- Main Menu Related Info -->
+        <menuitem name="Daily Transaction"
+            id="base.daily_transaction_root"
+            sequence="60"/>
+
+<!-- Sub Menu Related Info -->
+       <menuitem id="menu_daily_transaction_root" name="Daily Transaction"
+            parent="base.daily_transaction_root" sequence="1" />
+
+    
+<!--Daily Transaction Related info-->
+
+    <!--Daily Transaction List View-->
+    <record id="view_daily_transaction_tree" model="ir.ui.view">
+        <field name="name">daily.transaction.tree</field>
+        <field name="model">daily.transaction</field>
+        <field name="arch" type="xml">
+            <!-- this will be our title of list/tree view -->
+            <tree string="Daily Transaction">
+                <!-- these will automatically map table headers for our list view -->
+                <field name="name"/>
+		        <field name="date"/>
+		        <field name="type"/> 
+		        <field name="amount"/>         
+            </tree>
+        </field>
+    </record>
+    
+    <!--Daily Transaction Form View-->
+    <record id="view_daily_transaction_form" model="ir.ui.view">
+        <field name="name">daily.transaction.form.view</field>
+        <field name="model">daily.transaction</field>
+        <field name="arch" type="xml">
+            <!-- this will be our title of list/tree view -->
+            <form string="Daily Transaction" version="7.0">
+                <group>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="type"/> 
+                    <field name="amount"/> 
+                    <field name="note"/>                    
+                </group> 
+            </form>
+        </field>
+    </record>
+
+    <record id="action_daily_transaction" model="ir.actions.act_window">
+        <field name="name">Daily Transaction</field>
+        <field name="res_model">daily.transaction</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id"  eval="False"/>
+        <field name="context">{}</field>
+        <field name="help">Create new daily transaction.</field>
+    </record>   
+    
+    <menuitem action="action_daily_transaction"
+        id="menu_action_daily_transaction"
+        parent="menu_daily_transaction_root" sequence="20"/>
+
+
+    </data>
+</openerp>
+
